@@ -5,7 +5,7 @@
 }
 
 .container {
-    max-width: 1024px;
+    max-width: 1380px;
     margin: 0 auto;
 }
 
@@ -16,4 +16,22 @@ ol {
 
 img {
     width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+.grow-1 {
+    flex-grow: 1;
 }
