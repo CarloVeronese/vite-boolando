@@ -73,7 +73,7 @@ export default {
 
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row justify-between">
             <div class="col-4" v-for="card in cards">
                 <div class="card">
                     <figure>
@@ -83,6 +83,7 @@ export default {
                             <div class="discount" v-show="card.discount != ''">- {{ card.discount }}%</div>
                             <div class="tag" v-show="card.tag != ''">{{ card.tag }}</div>
                         </div>
+                        <div class="heart">&hearts;</div>
                     </figure>
                     <div class="brand">{{ card.brand }}</div>
                     <div class="item">{{ card.item.toUpperCase() }}</div>
@@ -149,5 +150,28 @@ export default {
             font-weight: 600;
         }
     }
+    .row{
+        padding: 55px 0;
+        row-gap: 50px;
+    }
+    .heart {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        background-color: white;
+        aspect-ratio: 1;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        cursor: pointer;
+        &:hover {
+            color: red;
+        }
+    }
 
+    .heart-red{
+        color: red;
+    }
 </style>
