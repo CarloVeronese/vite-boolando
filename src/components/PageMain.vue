@@ -7,14 +7,8 @@ export default {
     card: Object
   },
   methods: {
-    returnDiscountedPrice(price, discount) {
-      if (discount == "") return price;
-      const percDiscount = parseFloat(discount) / 100;
-      const discountedPrice = (price * (1 - percDiscount)).toFixed(2);
-      return discountedPrice;
-    },
     clickHeart(){
-        this.card.liked = !this.card.liked;
+        this.card.isInFavorites = !this.card.isInFavorites;
     }
   },
 };
@@ -28,12 +22,11 @@ export default {
             <div class="tags">
                 <div :class="badge.type" v-for="badge in card.badges">{{ badge.value }}</div>
             </div>
-            <div class="heart" @click="clickHeart()" :class="card.liked ? 'heart-red' : ''">&hearts;</div>
+            <div class="heart" @click="clickHeart()" :class="card.isInFavorites ? 'heart-red' : ''">&hearts;</div>
         </figure>
         <div class="brand">{{ card.brand }}</div>
-        <div class="item">{{ card.name }}</div>
+        <div class="item">{{ card.name.toUpperCase() }}</div>
         <div class="price-container">
-            <!-- <div class="discounted-price"> {{ returnDiscountedPrice(card.price, card.discount) }} &euro; </div> -->
             <div class="price" v-show="card.discount != ''">{{ card.price }} &euro;</div>
         </div>
     </div>
