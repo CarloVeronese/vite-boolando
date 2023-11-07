@@ -9,6 +9,16 @@ export default {
   methods: {
     clickHeart(){
         this.card.isInFavorites = !this.card.isInFavorites;
+    },
+    returnDiscount() {
+        for(let i = 0; i < this.card.badges.length; i++) {
+            if(this.card.badges[i].type == 'discount') {
+                const discountValue = parseFloat(this.card.badges[i].value);
+                const finalPrice = (this.card.price * (100 + discountValue) / 100).toFixed(2);
+                return finalPrice;
+            }
+        }
+        return this.card.price;
     }
   },
 };
@@ -24,10 +34,11 @@ export default {
             </div>
             <div class="heart" @click="clickHeart()" :class="card.isInFavorites ? 'heart-red' : ''">&hearts;</div>
         </figure>
-        <div class="brand">{{ card.brand }}</div>
+        <div class="brand" @click="returnDiscount()">{{ card.brand }}</div>
         <div class="item">{{ card.name.toUpperCase() }}</div>
         <div class="price-container">
-            <div class="price" v-show="card.discount != ''">{{ card.price }} &euro;</div>
+            <div class="discounted-price">{{ returnDiscount() }} &euro;</div>
+            <div class="price" v-show="card.price != returnDiscount()">{{ card.price }} &euro;</div>
         </div>
     </div>
 </template>
@@ -62,6 +73,7 @@ export default {
 
       .discount {
         background-color: $discount-color;
+        order: -1;
       }
 
       .tag {
