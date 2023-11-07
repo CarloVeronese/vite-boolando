@@ -40,7 +40,7 @@ export default {
 @use '../style/partials/variables' as *;
 
 .footer-content {
-    height: 113px;
+    padding: 30px 0;
     background-color: $footer-color;
     color: white;
 
@@ -74,7 +74,6 @@ export default {
         .social-links {
             display: flex;
             gap: 10px;
-
             a {
                 color: white;
             }

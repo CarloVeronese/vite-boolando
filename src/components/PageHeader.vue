@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-    <div class="footer-content">
+    <div class="header-content">
         <div class="container">
             <div class="row">
                 <ul class="list">
@@ -60,7 +60,7 @@ export default {
     }
 }
 
-.footer-content {
+.header-content {
     background-color: $header-color;
     line-height: 74px;
 }</style>
