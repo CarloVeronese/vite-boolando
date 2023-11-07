@@ -6,7 +6,7 @@ import productsJson from "./db.json"
 export default {
   data() {
     return {
-      cards: productsJson
+      cards: productsJson.products
     }
   },
   components: {
@@ -22,7 +22,7 @@ export default {
     <PageHeader />
     <div class="container">
       <div class="row justify-between cards-container">
-        <div class="col-4" v-for="card in cards.products">
+        <div class="col-4" v-for="card in cards">
           <PageMain :card="card" />
         </div>
       </div>

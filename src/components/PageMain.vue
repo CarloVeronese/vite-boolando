@@ -15,9 +15,6 @@ export default {
     },
     clickHeart(){
         this.card.liked = !this.card.liked;
-    },
-    showTag() {
-        if(this.card.badges[0].type === 'tag') return
     }
   },
 };
@@ -29,8 +26,7 @@ export default {
             <img :src="card.frontImage" alt="" class="card-img" />
             <img :src="card.backImage" alt="" class="card-img-hover" />
             <div class="tags">
-                <div class="discount" v-show="card.discount != ''">- {{ card.discount }}%</div>
-                <div class="tag" v-show="card.tag != ''">{{ card.tag }}</div>
+                <div :class="badge.type" v-for="badge in card.badges">{{ badge.value }}</div>
             </div>
             <div class="heart" @click="clickHeart()" :class="card.liked ? 'heart-red' : ''">&hearts;</div>
         </figure>
