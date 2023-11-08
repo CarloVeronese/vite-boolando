@@ -2,11 +2,11 @@
 import PageHeader from "./components/PageHeader.vue";
 import PageMain from "./components/PageMain.vue";
 import PageFooter from "./components/PageFooter.vue";
-import productsJson from "./db.json"
+import {store} from './store';
 export default {
   data() {
     return {
-      cards: productsJson.products
+      store: store
     }
   },
   components: {
@@ -14,6 +14,7 @@ export default {
     PageMain,
     PageFooter
   },
+
 }
 </script>
 
@@ -22,7 +23,7 @@ export default {
     <PageHeader />
     <div class="container">
       <div class="row justify-between cards-container">
-        <div class="col-4" v-for="card in cards">
+        <div class="col-4" v-for="card in store.items.products">
           <PageMain :card="card" />
         </div>
       </div>
