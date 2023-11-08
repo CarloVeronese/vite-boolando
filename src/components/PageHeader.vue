@@ -3,7 +3,7 @@ export default {
     data() {
         return {
             categories: ['Donna', 'Uomo', 'Bambini'],
-            icons: ['Shop', 'Like', 'Cart']
+            icons: [['fas','user'], ['far', 'heart'], ['fas', 'bag-shopping']],
         }
     }
 }
@@ -23,7 +23,9 @@ export default {
                 </div>
                 <ul class="list">
                     <li v-for="icon in icons">
-                        <a href="">{{ icon }}</a>
+                        <a href="">
+                            <font-awesome-icon class="icons" :icon="icon"></font-awesome-icon>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -63,4 +65,5 @@ export default {
 .header-content {
     background-color: $header-color;
     line-height: 74px;
-}</style>
+}
+</style>

@@ -20,7 +20,6 @@ export default {
     .then(res => {
       const items = res.data;
       this.store.items = items;
-      console.log(this.store.items)
     })
   }
 

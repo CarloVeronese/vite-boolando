@@ -5,7 +5,7 @@ export default {
             company: 'Boolando s.r.l',
             links: ['Informazioni legali', 'Informativa sulla privacy', 'Diritto di recesso'],
             findUs: 'Trovaci anche su',
-            socials: ['Twitter', 'Facebook', 'Instagram', 'Pinterest', 'YouTube']
+            socials: [['fab', 'twitter'], ['fab', 'facebook'], ['fab', 'instagram'], ['fab', 'pinterest'], ['fab', 'youtube']]
         }
     }
 }
@@ -27,7 +27,9 @@ export default {
                     <div class="find-us">{{ findUs }}</div>
                     <ul class="social-links">
                         <li v-for="social in socials">
-                            <a href="">{{ social }}</a>
+                            <a href="">
+                                <font-awesome-icon class="icon" :icon="social"></font-awesome-icon>
+                            </a>
                         </li>
                     </ul>
                 </div>
