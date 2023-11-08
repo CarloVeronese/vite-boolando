@@ -2,7 +2,8 @@
 import PageHeader from "./components/PageHeader.vue";
 import PageMain from "./components/PageMain.vue";
 import PageFooter from "./components/PageFooter.vue";
-import {store} from './store';
+import { store } from './store';
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -14,6 +15,14 @@ export default {
     PageMain,
     PageFooter
   },
+  created(){
+    axios.get('http://localhost:3000/products')
+    .then(res => {
+      const items = res.data;
+      this.store.items = items;
+      console.log(this.store.items)
+    })
+  }
 
 }
 </script>
@@ -23,7 +32,7 @@ export default {
     <PageHeader />
     <div class="container">
       <div class="row justify-between cards-container">
-        <div class="col-4" v-for="card in store.items.products">
+        <div class="col-4" v-for="card in store.items">
           <PageMain :card="card" />
         </div>
       </div>
