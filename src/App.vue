@@ -55,7 +55,7 @@ export default {
   </div>
   <div class="modal" v-show="open">
     <div class="content">
-      <ul>
+      <ul class="modal-info">
         <li>Brand: {{ selectedCard.brand }}</li>
         <li>Item: {{ selectedCard.name }}</li>
         <li>Price: {{ selectedCard.price }} &euro;</li>
@@ -63,6 +63,10 @@ export default {
         <li v-for="badge in selectedCard.badges">{{ badge.type }}: {{ badge.value }}</li>
         <li>Liked: <span v-if="(selectedCard.isInFavorites)">Yes</span><span v-else>No</span></li>
       </ul>
+      <div class="modal-imgs">
+            <img :src="selectedCard.frontImage" alt="">
+            <img :src="selectedCard.backImage" alt="">
+      </div>
       <span @click="closeModal()"><font-awesome-icon icon="fa-regular fa-circle-xmark" /></span>
     </div>
   </div>
@@ -98,6 +102,20 @@ export default {
     padding: 20px;
     width: 100%;
     max-width: 450px;
+    .modal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .modal-imgs {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      img {
+        border: 1px solid black;
+      }
+    }
     span {
       cursor: pointer;
     }
