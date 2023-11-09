@@ -10,6 +10,8 @@ export default {
       store: store,
       open: false,
       selectedCard: {},
+      selectedDiscountPrice: '',
+      slectedCardLiked: 'No',
     }
   },
   components: {
@@ -25,9 +27,12 @@ export default {
     })
   },
   methods:{
-    showModal(card) {
+    showModal(card, discountedPrice) {
       this.open = true;
       this.selectedCard = card;
+      this.selectedDiscountPrice = discountedPrice;
+      if(card.isInFavorites) this.slectedCardLiked = 'Yes';
+      else this.slectedCardLiked = 'No';
     },
     closeModal() {
       this.open = false;
@@ -35,8 +40,7 @@ export default {
     clickLike(index) {
       this.store.items[index].isInFavorites = !this.store.items[index].isInFavorites;
     }
-  }
-
+  },
 }
 </script>
 
@@ -52,16 +56,19 @@ export default {
     </div>
     <PageFooter />    
   </div>
-  <!-- <div class="modal" v-show="open">
+  <div class="modal" v-show="open">
     <div class="content">
       <ul>
         <li>Brand: {{ selectedCard.brand }}</li>
         <li>Item: {{ selectedCard.name }}</li>
-        <li>Price: {{ selectedCard.price }}</li>
+        <li>Price: {{ selectedCard.price }} &euro;</li>
+        <li>Final Price: {{ selectedDiscountPrice }} &euro;</li>
+        <li v-for="badge in selectedCard.badges">{{ badge.type }}: {{ badge.value }}</li>
+        <li>Liked: {{ slectedCardLiked }}</li>
       </ul>
       <span @click="closeModal()"><font-awesome-icon icon="fa-regular fa-circle-xmark" /></span>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <style lang="scss">

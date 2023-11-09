@@ -5,7 +5,7 @@ export default {
   },
   methods: {
     clickTitle() {
-      this.$emit('show', this.card)
+      this.$emit('show', this.card, this.discountedPrice)
     },
     clickHeart(){
         this.$emit('liked');
