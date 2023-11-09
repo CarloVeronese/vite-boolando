@@ -11,7 +11,6 @@ export default {
       open: false,
       selectedCard: {},
       selectedDiscountPrice: '',
-      slectedCardLiked: 'No',
     }
   },
   components: {
@@ -31,8 +30,6 @@ export default {
       this.open = true;
       this.selectedCard = card;
       this.selectedDiscountPrice = discountedPrice;
-      if(card.isInFavorites) this.slectedCardLiked = 'Yes';
-      else this.slectedCardLiked = 'No';
     },
     closeModal() {
       this.open = false;
@@ -64,7 +61,7 @@ export default {
         <li>Price: {{ selectedCard.price }} &euro;</li>
         <li>Final Price: {{ selectedDiscountPrice }} &euro;</li>
         <li v-for="badge in selectedCard.badges">{{ badge.type }}: {{ badge.value }}</li>
-        <li>Liked: {{ slectedCardLiked }}</li>
+        <li>Liked: <span v-if="(selectedCard.isInFavorites)">Yes</span><span v-else>No</span></li>
       </ul>
       <span @click="closeModal()"><font-awesome-icon icon="fa-regular fa-circle-xmark" /></span>
     </div>
@@ -77,7 +74,6 @@ export default {
   padding: 55px 0;
   row-gap: 50px;
 }
-
 .modal {
   &::after{
     content: '';

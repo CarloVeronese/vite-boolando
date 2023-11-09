@@ -12,7 +12,7 @@ export default {
     }
   },
   computed: {
-    discountedPrice: function() {
+    discountedPrice() {
       for(let i = 0; i < this.card.badges.length; i++) {
             if(this.card.badges[i].type == 'discount') {
                 const discountValue = parseFloat(this.card.badges[i].value);
