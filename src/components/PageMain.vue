@@ -4,11 +4,16 @@ export default {
     card: Object
   },
   methods: {
-    clickHeart(){
-        this.card.isInFavorites = !this.card.isInFavorites;
+    clickTitle() {
+      this.$emit('show', this.card)
     },
-    returnDiscount() {
-        for(let i = 0; i < this.card.badges.length; i++) {
+    clickHeart(){
+        this.$emit('liked');
+    }
+  },
+  computed: {
+    discountedPrice: function() {
+      for(let i = 0; i < this.card.badges.length; i++) {
             if(this.card.badges[i].type == 'discount') {
                 const discountValue = parseFloat(this.card.badges[i].value);
                 const finalPrice = (this.card.price * (100 + discountValue) / 100).toFixed(2);
@@ -17,7 +22,7 @@ export default {
         }
         return this.card.price;
     }
-  },
+  }
 };
 </script>
 
@@ -31,11 +36,11 @@ export default {
             </div>
             <div class="heart" @click="clickHeart()" :class="card.isInFavorites ? 'heart-red' : ''">&hearts;</div>
         </figure>
-        <div class="brand" @click="returnDiscount()">{{ card.brand }}</div>
-        <div class="item">{{ card.name.toUpperCase() }}</div>
+        <div class="brand">{{ card.brand }}</div>
+        <div class="item" @click="clickTitle()">{{ card.name.toUpperCase() }}</div>
         <div class="price-container">
-            <div class="discounted-price">{{ returnDiscount() }} &euro;</div>
-            <div class="price" v-show="card.price != returnDiscount()">{{ card.price }} &euro;</div>
+            <div class="discounted-price">{{ discountedPrice }} &euro;</div>
+            <div class="price" v-show="card.price != discountedPrice">{{ card.price }} &euro;</div>
         </div>
     </div>
 </template>
@@ -105,6 +110,7 @@ export default {
 
   .item {
     font-weight: 600;
+    cursor: pointer;
   }
 }
 
@@ -124,4 +130,5 @@ export default {
 .heart-red {
   color: red;
 }
+
 </style>
